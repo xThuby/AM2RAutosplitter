@@ -95,7 +95,7 @@ split
         }
 
         // The Tower
-        if (current.metroids == 20 && !vars.completedSplits["tower"] && old.room == 186)
+        if (current.metroids == 14 && !vars.completedSplits["tower"] && old.room == 186)
         {
             vars.completedSplits["tower"] = true;
             return true;
