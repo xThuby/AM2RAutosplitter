@@ -29,7 +29,8 @@ start
 {
     vars.canFinish = false;
 
-    if (old.room != current.room && current.room == 17 && old.room == 1) {
+    if (old.room != current.room && current.room == 17 && old.room == 1)
+    {
         return true;
     }
 }
