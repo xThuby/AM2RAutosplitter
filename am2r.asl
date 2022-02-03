@@ -3,7 +3,6 @@ state("AM2R", "v1.5+")
     uint room : "AM2R.exe", 0x5CB860;
     double metroids : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x400, 0x0;
     double facing : "AM2R.exe", 0x003C9434, 0x110, 0xAC, 0x8, 0x34, 0x10, 0x8BC, 0x0;
-    double time_of_day : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x8, 0xA0;
 }
 //double gamestart : "AM2R.exe", 0x003BD168, 0x0, 0x34, 0x10, 0x19C, 0x0;
 
@@ -38,6 +37,8 @@ startup
 
 start
 {
+    vars.canFinish = false;
+
     if (old.room != current.room && current.room == 17 && old.room == 1)
     {
         return true;
@@ -46,6 +47,14 @@ start
 
 update
 {
+    vars.canFinish = true;
+    var completedSplits = vars.completedSplits;
+    foreach(var split in completedSplits)
+    {
+        vars.canFinish = split.Value;
+    }
+
+    print(vars.canFinish.ToString());
 }
 
 // Splits happen on room transitions between specific rooms, and when
@@ -139,7 +148,7 @@ split
         }
     }
 
-    if (current.time_of_day == 2 && current.facing == 0 && old.facing != 0) {
+    if (vars.canFinish && current.facing == 0 && old.facing != 0) {
         return true;
     }
 }
