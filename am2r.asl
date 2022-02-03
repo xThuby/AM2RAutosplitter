@@ -48,7 +48,7 @@ update
 }
 
 // Splits happen on room transitions between specific rooms, and when
-// a specific amount of metrdois are emaining
+// a specific amount of metroids are emaining
 // Golden Temple - 42 metroids. Room 55 -> 35
 // Hydro Station - 34 metroids. Room 82 -> 33
 // Industrial Complex - 31 metroids. Room 131 -> 130
