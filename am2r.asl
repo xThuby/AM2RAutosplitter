@@ -50,7 +50,7 @@ startup
     settings.Add("lab", true, "Genetics Lab");
     settings.Add("queen", true, "Queen");
 
-    settings.Add("majors", false, "Major Items")
+    settings.Add("majors", false, "Major Items");
     settings.CurrentDefaultParent = "majors";
     settings.Add("bombs", false, "Bombs");
     settings.Add("spider", false, "Spider Ball");
