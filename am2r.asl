@@ -4,6 +4,21 @@ state("AM2R", "v1.5+")
     double metroids : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x400, 0x0;
     double facing : "AM2R.exe", 0x003C9434, 0x110, 0xAC, 0x8, 0x34, 0x10, 0x8BC, 0x0;
     double timeOfDay : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x8, 0xA0;
+
+    double bombs : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x0;
+    double spider : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x20;
+    double spring : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x30;
+    double highJump : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x40;
+    double varia : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x50;
+    double spaceJump : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x60;
+    double speedBooster : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x70;
+    double screwAttack : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x80;
+    double gravity : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0x90;
+    double charge : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0xA0;
+    double ice : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0xB0;
+    double wave : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0xC0;
+    double spazer : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0xD0;
+    double plasma : "AM2R.exe", 0x003C9730, 0x34, 0x10, 0x22C, 0x0, 0x4, 0x4, 0xE0;
 }
 //double gamestart : "AM2R.exe", 0x003BD168, 0x0, 0x34, 0x10, 0x19C, 0x0;
 
@@ -34,6 +49,23 @@ startup
     settings.Add("omegaNest", true, "Omega Nest");
     settings.Add("lab", true, "Genetics Lab");
     settings.Add("queen", true, "Queen");
+
+    settings.Add("majors", false, "Major Items");
+    settings.CurrentDefaultParent = "majors";
+    settings.Add("bombs", false, "Bombs");
+    settings.Add("spider", false, "Spider Ball");
+    settings.Add("spring", false, "Spring Ball");
+    settings.Add("highJump", false, "High Jump");
+    settings.Add("varia", false, "Varia Suit");
+    settings.Add("spaceJump", false, "Space Jump");
+    settings.Add("speedBooster", false, "Speed Booster");
+    settings.Add("screwAttack", false, "Screw Attack");
+    settings.Add("gravity", false, "Gravity Suit");
+    settings.Add("charge", false, "Charge Beam");
+    settings.Add("ice", false, "Ice Beam");
+    settings.Add("wave", false, "Wave Beam");
+    settings.Add("spazer", false, "Spazer");
+    settings.Add("plasma", false, "Plasma Beam");
 }
 
 start
@@ -139,7 +171,24 @@ split
         }
     }
 
-    if (current.timeOfDay == 2 && current.facing == 0 && old.facing != 0) {
+    var bombs = current.bombs == 1 && old.bombs == 0 && settings["bombs"];
+    var spider = current.spider == 1 && old.spider == 0 && settings["spider"];
+    var spring = current.spring == 1 && old.spring == 0 && settings["spring"];
+    var highJump = current.highJump == 1 && old.highJump == 0 && settings["highJump"];
+    var varia = current.varia == 1 && old.varia == 0 && settings["varia"];
+    var spaceJump = current.spaceJump == 1 && old.spaceJump == 0 && settings["spaceJump"];
+    var speedBooster = current.speedBooster == 1 && old.speedBooster == 0 && settings["speedBooster"];
+    var screwAttack = current.screwAttack == 1 && old.screwAttack == 0 && settings["screwAttack"];
+    var gravity = current.gravity == 1 && old.gravity == 0 && settings["gravity"];
+    var charge = current.charge == 1 && old.charge == 0 && settings["charge"];
+    var ice = current.ice == 1 && old.ice == 0 && settings["ice"];
+    var wave = current.wave == 1 && old.wave == 0 && settings["wave"];
+    var spazer = current.spazer == 1 && old.spazer == 0 && settings["spazer"];
+    var plasma = current.plasma == 1 && old.plasma == 0 && settings["plasma"];
+    return bombs || spider || spring || highJump || varia || spaceJump || speedBooster || screwAttack || gravity || charge || ice || wave || spazer || plasma;
+
+    if (current.timeOfDay == 2 && current.facing == 0 && old.facing != 0) 
+    {
         return true;
     }
 }
